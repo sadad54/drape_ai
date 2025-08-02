@@ -1,0 +1,2 @@
+// Closet provider
+class ClosetProvider {}

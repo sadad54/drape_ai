@@ -1,0 +1,2 @@
+// Outfit provider
+class OutfitProvider {}

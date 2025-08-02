@@ -1,0 +1,2 @@
+// User provider
+class UserProvider {}

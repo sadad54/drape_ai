@@ -1,0 +1,2 @@
+// Theme provider
+class ThemeProvider {}
