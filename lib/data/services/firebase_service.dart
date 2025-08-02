@@ -13,6 +13,51 @@ class FirebaseService {
   FirebaseService._();
   static final FirebaseService instance = FirebaseService._();
 
+  // Collection References
+  static CollectionReference get users =>
+      FirebaseFirestore.instance.collection(usersCollection);
+
+  static CollectionReference get clothingItems =>
+      FirebaseFirestore.instance.collection(clothingItemsCollection);
+
+  static CollectionReference get outfits =>
+      FirebaseFirestore.instance.collection(outfitsCollection);
+
+  static CollectionReference get trends =>
+      FirebaseFirestore.instance.collection(trendsCollection);
+
+  // Error handling helper
+  static String handleFirestoreError(FirebaseException e) {
+    switch (e.code) {
+      case 'permission-denied':
+        return 'Permission denied. Please check your authentication.';
+      case 'unavailable':
+        return 'Service temporarily unavailable. Please try again.';
+      case 'not-found':
+        return 'Document not found.';
+      case 'already-exists':
+        return 'Document already exists.';
+      case 'resource-exhausted':
+        return 'Quota exceeded. Please try again later.';
+      case 'failed-precondition':
+        return 'Operation failed due to precondition.';
+      case 'aborted':
+        return 'Operation was aborted. Please try again.';
+      case 'out-of-range':
+        return 'Invalid range specified.';
+      case 'unimplemented':
+        return 'Operation not implemented.';
+      case 'internal':
+        return 'Internal server error. Please try again.';
+      case 'deadline-exceeded':
+        return 'Operation timed out. Please try again.';
+      case 'unauthenticated':
+        return 'User not authenticated. Please sign in.';
+      default:
+        return e.message ?? 'An unknown error occurred.';
+    }
+  }
+
   // Firebase instances
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

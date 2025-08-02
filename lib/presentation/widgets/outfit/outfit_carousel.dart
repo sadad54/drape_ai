@@ -1,5 +1,5 @@
-// Outfit carousel widget
 import 'package:flutter/material.dart';
+import 'outfit_card.dart';
 
 class OutfitCarousel extends StatelessWidget {
   final List<String> outfits;
@@ -7,9 +7,19 @@ class OutfitCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      scrollDirection: Axis.horizontal,
-      children: outfits.map((e) => OutfitCard(description: e)).toList(),
+    return SizedBox(
+      height: 200,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: outfits.length,
+        itemBuilder: (context, index) {
+          return Container(
+            width: 160,
+            margin: const EdgeInsets.only(right: 16),
+            child: OutfitCard(description: outfits[index]),
+          );
+        },
+      ),
     );
   }
 }

@@ -29,8 +29,8 @@ class UserRepository {
   Future<void> updateUser(UserModel user) async {
     try {
       await FirebaseService.users.doc(user.id).update(
-        user.copyWith(updatedAt: DateTime.now()).toJson(),
-      );
+            user.copyWith(updatedAt: DateTime.now()).toJson(),
+          );
     } on FirebaseException catch (e) {
       throw Exception(FirebaseService.handleFirestoreError(e));
     }
@@ -46,7 +46,8 @@ class UserRepository {
   }
 
   // Update user preferences
-  Future<void> updateUserPreferences(String userId, UserPreferences preferences) async {
+  Future<void> updateUserPreferences(
+      String userId, UserPreferences preferences) async {
     try {
       await FirebaseService.users.doc(userId).update({
         'preferences': preferences.toJson(),
@@ -58,7 +59,8 @@ class UserRepository {
   }
 
   // Update fashion archetype
-  Future<void> updateFashionArchetype(String userId, FashionArchetype archetype) async {
+  Future<void> updateFashionArchetype(
+      String userId, FashionArchetype archetype) async {
     try {
       await FirebaseService.users.doc(userId).update({
         'fashion_archetype': archetype.toJson(),
@@ -87,4 +89,9 @@ class UserRepository {
       await FirebaseService.users.doc(userId).update({
         'is_onboarding_complete': true,
         'updated_at': DateTime.now().toIso8601String(),
-      }); 
+      });
+    } on FirebaseException catch (e) {
+      throw Exception(FirebaseService.handleFirestoreError(e));
+    }
+  }
+}

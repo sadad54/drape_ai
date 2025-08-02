@@ -1,5 +1,5 @@
-// Clothing grid widget
 import 'package:flutter/material.dart';
+import '../clothing/clothing_card.dart';
 
 class ClothingGrid extends StatelessWidget {
   final List<String> items;
@@ -9,7 +9,10 @@ class ClothingGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridView.count(
       crossAxisCount: 2,
-      children: items.map((e) => ClothingCard(name: e)).toList(),
+      childAspectRatio: 0.75,
+      crossAxisSpacing: 16,
+      mainAxisSpacing: 16,
+      children: items.map((item) => ClothingCard(name: item)).toList(),
     );
   }
 }

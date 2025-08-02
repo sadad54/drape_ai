@@ -150,6 +150,20 @@ class AuthNotifier extends StateNotifier<AuthState> {
           if (isOnboardingComplete != null) {
             updates['isOnboardingComplete'] = isOnboardingComplete;
           }
+          updates['displayName'] = displayName;
+          if (photoURL != null) updates['photoURL'] = photoURL;
+          if (fashionArchetype != null) {
+            updates['fashionArchetype'] = fashionArchetype.toJson();
+          }
+          if (preferences != null) {
+            updates['preferences'] = preferences.toJson();
+          }
+          if (location != null) {
+            updates['location'] = location.toJson();
+          }
+          if (isOnboardingComplete != null) {
+            updates['isOnboardingComplete'] = isOnboardingComplete;
+          }
 
           await _firebaseService.updateUserData(user.id, updates);
 
